@@ -10,7 +10,7 @@ TOKEN = os.environ.get("BOT_TOKEN")
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     print("🚀 /start buyrug'i keldi")
-    await update.message.reply_text("Salom! Men AI-Ustoz botman. /help buyrug‘ini bosing.")
+    await update.message.reply_text("Salom! Men AI-Ustoz botman. Sizga qanday yordam bera olaman?")
 
 async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE):
     print(f"📩 Xabar keldi: {update.message.text}")
@@ -18,7 +18,9 @@ async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 def main():
     app = Application.builder().token(TOKEN).build()
+    
     app.add_handler(CommandHandler("start", start))
+
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, echo))
     print("✅ Bot ishga tushyapti...")
     app.run_polling()
